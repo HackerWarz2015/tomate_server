@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show] do
         resources :friends, only: [:index, :create]
         resources :user_tasks, only: [:index, :create, :update]
+        resources :rewards, only: [:index, :create, :update]
       end
     end
   end
