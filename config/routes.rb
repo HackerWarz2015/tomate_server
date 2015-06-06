@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
     namespace :v1 do
       resources :users, only: [:show] do
+        resources :friends, only: [:index, :create]
         resources :user_tasks, only: [:index, :create, :update]
       end
     end
