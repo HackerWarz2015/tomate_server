@@ -6,7 +6,10 @@ class Api::V1::UsersController < ApiController
           id: 1,
           name: "ks",
           email: "ks@ks.com",
-          steps: 10000
+          steps: 10000,
+          friend_ids: [
+            1, 2, 3
+          ]
         }
       ]
     }
