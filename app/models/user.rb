@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :user_tasks
+
   validates :authentication_token, uniqueness: true, allow_nil: true
 
   def ensure_authentication_token
