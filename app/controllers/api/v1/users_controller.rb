@@ -1,18 +1,15 @@
 class Api::V1::UsersController < ApiController
-  def index
-    @users = User.accessible_by(current_ability)
+  def show
     @users = {
-      users: [
-        {
-          id: 1,
-          name: "ks",
-          email: "ks@ks.com",
-          steps: 10000,
-          friend_ids: [
-            1, 2, 3
-          ]
-        }
-      ]
+      user: {
+        id: 1,
+        name: "ks",
+        email: "ks@ks.com",
+        steps: 10000,
+        friend_ids: [
+          2, 3, 4
+        ]
+      }
     }
     render json: @users
   end

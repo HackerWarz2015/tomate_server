@@ -47,3 +47,25 @@ l Method | URI (/api/v1/...)                            | 対応する action (/
 
 
 
+### <a name="users"></a> GET /users/:id
+* 必須パラメータ
+  id: 取得するユーザの id
+
+```
+{
+  "user": {
+     "id": 1,
+      "name": "ks",
+      "email": "ks@ks.com",
+      "steps": 10000,
+      "friend_ids": [
+            2,
+            3,
+            4
+        ]
+    }
+}
+```
+
+### <a name="users"></a> GET /users/:id
+

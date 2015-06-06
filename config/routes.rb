@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resource :authentication_token, only: [:update, :destroy]
 
     namespace :v1 do
-      resources :users, only: [:index] do
+      resources :users, only: [:show] do
         resources :user_tasks, only: [:index, :create, :update]
       end
     end
