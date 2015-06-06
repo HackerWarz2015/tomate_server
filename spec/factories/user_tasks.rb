@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory :user_task do
     user_id 1
-    title "BIG丼大盛りを完食する"
+    sequence :title do |n|
+      "BIG丼大盛りを完食する#{n}"
+    end
     difficulty 1
     steps 1
     failure_at nil

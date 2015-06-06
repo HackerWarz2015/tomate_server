@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :user_tasks
+  has_many :users_rewards, dependent: :destroy
+  has_many :rewards, through: :users_rewards
 
   validates :authentication_token, uniqueness: true, allow_nil: true
 
