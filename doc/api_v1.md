@@ -87,7 +87,7 @@ l Method | URI (/api/v1/...)                            | 対応する action (/
 }
 ```
 
-### <a name="friends_update>"></a> POST /users/:user_id/friends
+### <a name="friends_update"></a> POST /users/:user_id/friends
 * URI 中の必須パラメータ
   user_id : 指定するユーザの id
 * 必須パラメータ
