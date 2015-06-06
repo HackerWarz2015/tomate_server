@@ -5,7 +5,7 @@ class CreateUserTasks < ActiveRecord::Migration
       t.string :title
       t.integer :difficulty
       t.integer :steps
-      t.must :is
+      t.boolean :is_must
       t.datetime :failure_at
       t.datetime :done_at
 
