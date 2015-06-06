@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   validates :authentication_token, uniqueness: true, allow_nil: true
 
+  def friends
+    friends_of_from_user
+  end
+
   def ensure_authentication_token
     self.authentication_token || generate_authentication_token
   end
