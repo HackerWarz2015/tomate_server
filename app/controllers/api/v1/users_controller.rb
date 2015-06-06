@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApiController
   def index
+    @users = User.accessible_by(current_ability)
     @users = {
       users: [
         {
