@@ -3,14 +3,30 @@ class Api::V1::RewardsController < ApiController
   before_filter :check_authorization
 
   def index
-    @rewards = Reward.where(user_id: params[:user_id])
+    @rewards = []
+    users_rewards = UsersReward.where(user_id: params[:user_id])
+    users_rewards.each do |ur|
+      reward = Reward.find(ur.reward_id)
+      @rewards << {
+        id: reward.id,
+        title: reward.title,
+        required_steps: reward.required_steps,
+        absolute_steps: ur.absolute_steps,
+        is_public: reward.is_public,
+        released_at: reward.released_at,
+        done_at: reward.done_at,
+      }
+    end
   end
 
   def create
     ActiveRecord::Base.transaction do
       @reward = Reward.new(reward_params)
       @reward.save
-      UsersReward.create(user_id: params[:user_id], reward_id: @reward.id)
+
+      @user = User.find(params[:user_id])
+      absolute_steps = @user.steps + @reward.required_steps
+      UsersReward.create(user_id: params[:user_id], reward_id: @reward.id, absolute_steps: absolute_steps)
     end
     rescue => e
       render json: { "error": "failed to create reward to database" }
@@ -37,6 +53,6 @@ class Api::V1::RewardsController < ApiController
   end
 
   def reward_params
-    params.require(:reward).permit(:title, :is_public)
+    params.require(:reward).permit(:title, :is_public, :required_steps)
   end
 end
