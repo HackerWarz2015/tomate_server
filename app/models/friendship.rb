@@ -11,12 +11,13 @@ class Friendship < ActiveRecord::Base
 
     ActiveRecord::Base.transaction do
       to_ids.each do |to_id|
-        Friendship.create(from_user_id: from_id, to_user_id: to_id)
-        Friendship.create(from_user_id: to_id, to_user_id: from_id)
+        return false if from_id == to_id
+        Friendship.new(from_user_id: from_id, to_user_id: to_id)
+        Friendship.new(from_user_id: to_id, to_user_id: from_id)
       end
     end
-      return true
-    rescue => e
-      return false, e
+    return true
+  rescue => e
+    return false, e
   end
 end
