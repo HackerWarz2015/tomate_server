@@ -3,7 +3,7 @@ class Api::AuthenticationTokensController < ApplicationController
 
   def update
     token = current_user.generate_authentication_token
-    render json: {token: token}.to_json
+    render json: { token: token }.to_json
   end
 
   def destroy
