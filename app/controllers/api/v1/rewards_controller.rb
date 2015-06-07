@@ -13,7 +13,7 @@ class Api::V1::RewardsController < ApiController
       UsersReward.create(user_id: params[:user_id], reward_id: @reward.id)
     end
     rescue => e
-      render json: { "error": "ks #{e}" }
+      render json: { "error": "failed to create reward to database" }
   end
 
   def update
@@ -25,7 +25,7 @@ class Api::V1::RewardsController < ApiController
       update_params[:done_at] = DateTime.now
     end
     unless @reward.update_attributes(update_params)
-      render json: { "error": "ks" }
+      render json: { "error": "failed to update changes to database" }
     end
   end
 

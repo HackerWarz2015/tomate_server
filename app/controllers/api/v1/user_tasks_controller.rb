@@ -7,7 +7,7 @@ class Api::V1::UserTasksController < ApiController
     @user_task = UserTask.new(user_task_params)
     @user_task.user_id = params[:user_id]
     unless @user_task.save
-      render json: { "error": "ks" }
+      render json: { "error": "failed to create UserTask to database" }
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::UserTasksController < ApiController
     end
 
     unless @user_task.update_attributes(update_params)
-      render json: { "error": "ks" }
+      render json: { "error": "failed to update changes to database" }
     end
   end
 
