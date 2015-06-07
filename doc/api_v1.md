@@ -235,6 +235,8 @@ status = NULL の場合、内容のみの編集で timestamp は更新しない�
       "id": 1,
       "title": "たけしと一緒に宇宙に行く",
       "is_public": true,
+      "required_steps": 30,
+      "absolute_steps: 80,
       "released_at": "2015-03-20T16:28:43.000+09:00",
       "done_at": "2015-03-20T16:28:43.000+09:00",
       "created_at": "2015-03-20T16:28:43.000+09:00",
@@ -259,6 +261,7 @@ status = NULL の場合、内容のみの編集で timestamp は更新しない�
   "reward": {
     "title": "きんいろモザイク",
     "is_public": false
+    "required_steps": 30,
   }
 }
 ```
@@ -269,6 +272,7 @@ status = NULL の場合、内容のみの編集で timestamp は更新しない�
   "reward": {
     "id": 3,
     "title": "きんいろモザイク",
+    "required_steps": 30,
     "is_public": false,
     "released_at": NULL,
     "done_at": NULL,
