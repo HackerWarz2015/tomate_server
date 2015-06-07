@@ -3,7 +3,7 @@ class Api::V1::RewardsController < ApiController
   before_filter :check_authorization
 
   def index
-    @rewards = Reward.where(user_id: params[:user_id])
+    @rewards = User.find(params[:user_id]).rewards
   end
 
   def create
