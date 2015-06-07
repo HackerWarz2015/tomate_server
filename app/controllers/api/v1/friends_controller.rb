@@ -11,11 +11,10 @@ class Api::V1::FriendsController < ApiController
     to_ids = params[:friend][:friends][:friend_ids]
     ret, e = Friendship.create_friendship(from_id, to_ids)
 
-    if ret
-      @friend_ids = User.find(params[:user_id]).friends.map { |friend| friend.id }
-    else
+    unless ret
       render json: { "error": e }
     end
+    @friend_ids = User.find(params[:user_id]).friends.map { |friend| friend.id }
   end
 
   private

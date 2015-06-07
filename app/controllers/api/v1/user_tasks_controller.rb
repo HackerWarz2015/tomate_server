@@ -1,6 +1,6 @@
 class Api::V1::UserTasksController < ApiController
   def index
-    @user_tasks = User.find(params[:user_id]).user_tasks
+    @user_tasks = UserTask.where(user_id: params[:user_id])
   end
 
   def create
@@ -16,8 +16,16 @@ class Api::V1::UserTasksController < ApiController
 
     update_params = user_task_params
     if params[:status] == "failure"
+      new_step = @user_task.user.steps - @user_task.steps
+      @user_task.user.update_attributes(steps: new_step)
+      update_params[:steps] = 0
       update_params[:failure_at] = DateTime.now
     elsif params[:status] == "done"
+      if @user_task.failure_at.nil?
+        new_step = @user_task.user.steps + @user_task.steps * 2
+        @user_task.user.update_attributes(steps: new_step)
+        update_params[:steps] *= 2
+      end
       update_params[:done_at] = DateTime.now
     end
 
