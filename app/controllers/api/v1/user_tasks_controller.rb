@@ -37,6 +37,6 @@ class Api::V1::UserTasksController < ApiController
   private
 
   def user_task_params
-    params.require(:user_task).permit(:title, :difficulty, :steps, :user_id)
+    params.require(:user_task).permit(:title, :difficulty, :steps, :user_id, :limit_at)
   end
 end
