@@ -7,6 +7,7 @@ class Ability
       can :manage, UserTask, id: user.id
       can :manage, Friendship, id: user.id
       can :manage, Reward, id: user.id
+      can :manage, UsersReward, id: user.id
     end
   end
 end

@@ -1,4 +1,7 @@
 class Api::V1::RewardsController < ApiController
+  skip_load_and_authorize_resource
+  before_filter :check_authorization
+
   def index
     @rewards = Reward.where(user_id: params[:user_id])
   end
@@ -27,6 +30,11 @@ class Api::V1::RewardsController < ApiController
   end
 
   private
+
+  def check_authorization
+    authorize! :manage, Reward
+    authorize! :manage, UsersReward
+  end
 
   def reward_params
     params.require(:reward).permit(:title, :is_public)
