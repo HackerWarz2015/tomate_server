@@ -1,6 +1,6 @@
 class Api::V1::UserTasksController < ApiController
   def index
-    @user_tasks = User.find(params[:user_id]).user_tasks
+    @user_tasks = UserTask.where(user_id: params[:user_id])
   end
 
   def create
